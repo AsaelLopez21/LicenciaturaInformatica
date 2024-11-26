@@ -100,9 +100,21 @@
         </button>
       </div>
     </div> -->
-    <h1 class="text-primary">App</h1>
-    <hr>
-    <CounterButton></CounterButton>
+    <!-- <h1 class="text-primary">App</h1>
+    <hr> -->
+    <!-- <CardUser  v-for="persona in listPersona":key="persona.nombre" class="mt-5" 
+      :titulo="listPersona[0].nombre" 
+      :descripcionP="listPersona[0].descripcion" 
+      :imagen="listPersona[0].foto"
+    </CardUser> -->
+    <h2 class="display-4">Persona: {{ nombreActual }}</h2>
+    <CardUser v-for="persona in listPersona":key="persona.nombre" class="mt-5"
+      :titulo="persona.nombre"  
+      :descripcionP="persona.descripcion"
+      :imagen="persona.foto"
+      @changeNameInCard="handlechangeName"
+      >
+    </CardUser>
 
   </div>
   
@@ -217,8 +229,42 @@
   // })
 
   //<!--!Importar componente para ir al otro archivo vue-->
-  import CounterButton from "./components/CounterButton.vue";
+  import CounterButton from "./components1/CounterButton.vue";
+  import CardUser from "./users/components/CardUser.vue";
 
+  const listPersona = [{
+    nombre: 'Hitler',
+    descripcion: 'Chamba',
+    foto: 'https://www.shutterstock.com/image-photo/nuremberg-germany-august-9-2024-260nw-2516622489.jpg'
+  },
+  {
+    nombre: 'Joseph Stalin',
+    descripcion: 'Líder de la Unión Soviética, ',
+    foto: 'https://img.rtve.es/imagenes/quien-fue-stalin-hombre-acero-apocalipsis-stalin/1691670678043.jpg'
+  },
+  {
+    nombre: 'Genghis Khan',
+    descripcion: 'Fundador del Imperio Mongol,',
+    foto: 'https://estaticos-cdn.prensaiberica.es/clip/7645f938-7587-4966-a630-f51bed35c4be_16-9-aspect-ratio_default_0.jpg'
+  },
+  {
+    nombre: 'Napoleón Bonaparte',
+    descripcion: 'Emperador francés que dominó ',
+    foto: 'https://preview.redd.it/theres-nothing-we-can-do-napoleon-bonarte-v0-vslraw65qupb1.jpg?width=640&crop=smart&auto=webp&s=5029e7fea91b35fb385adee56a8569d208936949'
+  },
+  {
+    nombre: 'Benito Mussolini',
+    descripcion: 'Dictador italiano y fundador del fascismo.',
+    foto: 'https://www.nationalww2museum.org/sites/default/files/styles/wide_medium/public/2020-04/Primary_%20Benito_Mussolini_colored%20photograph%20wearing%20commander%20in%20chief%20uniform%20c%201940%20courtesy%20wikipedia%20-%20Robert%20Citino.jpg?h=63c0a64f'
+  }
+];
+
+//<!--! 26-11-2024
+const nombreActual = ref('No name')
+const handlechangeName = (newName)=>{
+  nombreActual.value = newName
+}
+  
 </script>
 
 
